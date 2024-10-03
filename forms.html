@@ -1,86 +1,255 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>
-        form 
-    </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated User Form</title>
+    <style>
+        /* General Body Styling */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #74ebd5 0%, #ACB6E5 100%);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+
+        /* Container styling */
+        .container {
+            width: 600px;
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+
+        /* Form Slide Styling */
+        .form-slide {
+            display: none;
+            animation: morph 0.8s ease-in-out;
+            transform-origin: center;
+        }
+
+        .form-slide.active {
+            display: block;
+        }
+
+        /* Morph animation */
+        @keyframes morph {
+            0% {
+                opacity: 0;
+                transform: scale(0.8);
+                border-radius: 20px;
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+                border-radius: 0;
+            }
+        }
+
+        /* Font size of questions (h3 elements) */
+        h3 {
+            font-size: 1.5rem;
+        }
+
+        /* Button Styling */
+        .buttons, .submit-button {
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Modern Submit Button Styling */
+        input[type="submit"] {
+            background: linear-gradient(135deg, #ff7e5f, #feb47b);
+            color: white;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background: linear-gradient(135deg, #feb47b, #ff7e5f);
+            box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(-3px);
+        }
+
+        /* Adding a subtle background animation */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/bedge-grunge.png');
+            opacity: 0.3;
+            z-index: -1;
+            animation: pulseBackground 5s infinite alternate;
+        }
+
+        @keyframes pulseBackground {
+            from {
+                opacity: 0.3;
+            }
+            to {
+                opacity: 0.5;
+            }
+        }
+    </style>
 </head>
 <body>
-   <center>
-    <form action="http//localhost:8080/timetable" method="post">
-        Name:<input type="text" name="User name"> <br>
 
-      Email: <input type="email" name="email" required><br>
+<div class="container">
+    <form action="http://localhost:8080/timetable" method="post">
+        <!-- Slide 1: Name -->
+        <div class="form-slide active" id="slide-1">
+            <h3>Step 1: Name</h3>
+            <input type="text" name="User name" placeholder="Enter your name" required><br>
+        </div>
 
-        <label> Occupation:</label>
-        <input type="radio" id="student" name="occupation" value="student" required>
-        <label for="student">Student</label>
-        <input type="radio" id="worker" name="occupation" value="worker">
-        <label for="worker">Worker</label><br><br>
-      
-        <label>Select the days you want to study:</label><br>
-        <input type="checkbox" id="monday" name="days[]" value="Monday">
-        <label for="monday">Monday</label><br>
-        <input type="checkbox" id="tuesday" name="days[]" value="Tuesday">
-        <label for="tuesday">Tuesday</label><br>
-        <input type="checkbox" id="wednesday" name="days[]" value="Wednesday">
-        <label for="wednesday">Wednesday</label><br>
-        <input type="checkbox" id="thursday" name="days[]" value="Thursday">
-        <label for="thursday">Thursday</label><br>
-        <input type="checkbox" id="friday" name="days[]" value="Friday">
-        <label for="friday">Friday</label><br>
-        <input type="checkbox" id="saturday" name="days[]" value="Saturday">
-        <label for="saturday">Saturday</label><br>
-        <input type="checkbox" id="sunday" name="days[]" value="Sunday">
-        <label for="sunday">Sunday</label><br><br>
+        <!-- Slide 2: Email -->
+        <div class="form-slide" id="slide-2">
+            <h3>Step 2: Email</h3>
+            <input type="email" name="email" placeholder="Enter your email" required><br>
+        </div>
 
-        <label for="subject">Select Subjects:</label><br>
-        <select id="subject" name="subjects[]" multiple required>
-            <option value="Languages">Languages</option>
-            <option value="Mathematics">Mathematics</option>
-            <option value="Science">Science</option>
-            <option value="Medical Studies">Medical Studies</option>
-            <option value="History">History</option>
-            <option value="Law">Law</option>
-            <option value="Geography">Geography</option>
-            <option value="Computer Science">Computer Science</option>
-            <option value="Music">Music</option>
-            <option value="Art">Art</option>
-            <option value="Engineering">Engineering</option>
-            <option value="Psychology">Psychology</option>
-            <option value="Business Studies">Business Studies</option>
-            <option value="Economics">Economics</option>
-            <option value="Philosophy">Philosophy</option>
-            <option value="Political Science">Political Science</option>
-            <option value="Literature">Literature</option>
-            <option value="Sociology">Sociology</option>
-            <option value="Religious Studies">Religious Studies</option>
-            <option value="Programming Languages">Programming Languages</option>
-            <option value="Marketing">Marketing</option>
-            <option value="Finance">Finance</option>
-            <option value="Project Management">Project Management</option>
-        </select><br><br>
+        <!-- Slide 3: Occupation -->
+        <div class="form-slide" id="slide-3">
+            <h3>Step 3: Occupation</h3>
+            <label><input type="radio" id="student" name="occupation" value="student" required> Student</label><br>
+            <label><input type="radio" id="worker" name="occupation" value="worker"> Worker</label><br>
+        </div>
 
+        <!-- Slide 4: Study Days -->
+        <div class="form-slide" id="slide-4">
+            <h3>Step 4: Study Days</h3>
+            <label><input type="checkbox" id="monday" name="days[]" value="Monday"> Monday</label><br>
+            <label><input type="checkbox" id="tuesday" name="days[]" value="Tuesday"> Tuesday</label><br>
+            <label><input type="checkbox" id="wednesday" name="days[]" value="Wednesday"> Wednesday</label><br>
+            <label><input type="checkbox" id="thursday" name="days[]" value="Thursday"> Thursday</label><br>
+            <label><input type="checkbox" id="friday" name="days[]" value="Friday"> Friday</label><br>
+            <label><input type="checkbox" id="saturday" name="days[]" value="Saturday"> Saturday</label><br>
+            <label><input type="checkbox" id="sunday" name="days[]" value="Sunday"> Sunday</label><br>
+        </div>
 
-        <label>Enter your expected occupied time (work/study hours) for each day:</label><br>
-        <input type="time" id="occupied_start" name="occupied_start" required>
-        <label for="occupied_start">Start Time</label><br>
-        <input type="time" id="occupied_end" name="occupied_end" required>
-        <label for="occupied_end">End Time</label><br><br>
+        <!-- Slide 5: Subjects -->
+        <div class="form-slide" id="slide-5">
+            <h3>Step 5: Select Subjects</h3>
+            <select id="subject" name="subjects[]" multiple required>
+                <option value="Languages">Languages</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Science">Science</option>
+                <option value="Medical Studies">Medical Studies</option>
+                <option value="History">History</option>
+                <option value="Law">Law</option>
+                <option value="Geography">Geography</option>
+                <option value="Computer Science">Computer Science</option>
+                <option value="Music">Music</option>
+                <option value="Art">Art</option>
+                <option value="Engineering">Engineering</option>
+                <option value="Psychology">Psychology</option>
+                <option value="Business Studies">Business Studies</option>
+                <option value="Economics">Economics</option>
+                <option value="Philosophy">Philosophy</option>
+                <option value="Political Science">Political Science</option>
+                <option value="Literature">Literature</option>
+                <option value="Sociology">Sociology</option>
+                <option value="Religious Studies">Religious Studies</option>
+                <option value="Programming Languages">Programming Languages</option>
+                <option value="Marketing">Marketing</option>
+                <option value="Finance">Finance</option>
+                <option value="Project Management">Project Management</option>
+            </select><br>
+        </div>
 
-        <button type="button" onclick="addSession()">Add More Sessions</button>
-        <div id="extra_sessions"></div><br>
+        <!-- Slide 6: Occupied Time -->
+        <div class="form-slide" id="slide-6">
+            <h3>Step 6: Enter Your Occupied Time</h3>
+            <label>Start Time: <input type="time" id="occupied_start" name="occupied_start" required></label><br>
+            <label>End Time: <input type="time" id="occupied_end" name="occupied_end" required></label><br>
+        </div>
 
-        <label for="sleep_time">Select your sleep time (default 10:00 PM):</label>
-        <input type="time" id="sleep_time" name="sleep_time" value="22:00"><br><br>
+        <!-- Slide 7: Sleep Time -->
+        <div class="form-slide" id="slide-7">
+            <h3>Step 7: Sleep Time</h3>
+            <label for="sleep_time">Select your sleep time (default 10:00 PM):</label>
+            <input type="time" id="sleep_time" name="sleep_time" value="22:00" required><br>
+        </div>
 
-        <label for="study_hours">How many hours do you want to study per day?</label>
-        <input type="number" id="study_hours" name="study_hours" min="1" max="24" required><br><br>
+        <!-- Slide 8: Study Hours -->
+        <div class="form-slide" id="slide-8">
+            <h3>Step 8: Study Hours</h3>
+            <label for="study_hours">How many hours do you want to study per day?</label>
+            <input type="number" id="study_hours" name="study_hours" min="1" max="24" required><br>
+        </div>
 
+        <!-- Buttons -->
+        <div class="buttons">
+            <button type="button" id="prevBtn" onclick="changeSlide(-1)" style="display:none;">Previous</button>
+            <button type="button" id="nextBtn" onclick="changeSlide(1)">Next</button>
+        </div>
 
-        <input type="submit" value="Create Timetable">
-
-
+        <!-- Submit Button -->
+        <div class="submit-button" style="display:none;">
+            <input type="submit" value="Submit">
+        </div>
     </form>
-</center>
+</div>
+
+<script>
+    let currentSlide = 1;
+    showSlide(currentSlide);
+
+    function changeSlide(n) {
+        const totalSlides = document.querySelectorAll('.form-slide').length;
+        const slides = document.querySelectorAll('.form-slide');
+        
+        slides[currentSlide - 1].classList.remove('active');
+        currentSlide += n;
+        
+        if (currentSlide <= 1) {
+            document.getElementById("prevBtn").style.display = "none";
+        } else {
+            document.getElementById("prevBtn").style.display = "inline";
+        }
+
+        if (currentSlide >= totalSlides) {
+            document.getElementById("nextBtn").style.display = "none";
+            document.querySelector('.submit-button').style.display = 'block';
+        } else {
+            document.getElementById("nextBtn").style.display = "inline";
+            document.querySelector('.submit-button').style.display = 'none';
+        }
+
+        slides[currentSlide - 1].classList.add('active');
+    }
+
+    function showSlide(n) {
+        const slides = document.querySelectorAll('.form-slide');
+        slides[n - 1].classList.add('active');
+    }
+</script>
+
 </body>
 </html>
